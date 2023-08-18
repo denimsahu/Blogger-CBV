@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if message != None %}
+        <h3>{{message}}</h3>
+    {% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Create Username">
+        <input type="password" name="password1" placeholder="Create Password">
+        <input type="password" name="password2" placeholder="Renter Password">
+        <button>Submit</button>
+    </form>
+    <a href="login">Go Back?</a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Content:</h1>
+    <h3>{{object.content}}</h3>
+    <form action="{{object.pk}}/delete" method="POST">
+        {% csrf_token %}
+        <button>Delete</button>
+    </form>
+    <button><a style="text-decoration: none; color: black;" href="{{object.pk}}/update">Edit</a></button>
+    
+</body>
+</html>
