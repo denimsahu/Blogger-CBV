@@ -44,7 +44,7 @@ class content(DetailView):
 
 class home(ListView):
     model = Blog
-
+    
 class add(CreateView):
     model = Blog
     fields=['title','content']

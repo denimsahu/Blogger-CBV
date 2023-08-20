@@ -10,6 +10,6 @@
         {% csrf_token %}
         <button type="delete" value="delete">Delete</button>
     </form>
-    <button><a style="text-decoration: none; color: black;" href="/">Cancle</a></button>
+    <button><a style="text-decoration: none; color: black;" href="{% url 'home' %}">Cancle</a></button>
 </body>
 </html>

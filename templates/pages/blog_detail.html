@@ -8,11 +8,8 @@
 <body>
     <h1>Content:</h1>
     <h3>{{object.content}}</h3>
-    <form action="{{object.pk}}/delete" method="POST">
-        {% csrf_token %}
-        <button>Delete</button>
-    </form>
-    <button><a style="text-decoration: none; color: black;" href="{{object.pk}}/update">Edit</a></button>
+    <button><a style="text-decoration: none; color: black;" href="{% url 'delete' object.pk %}">Delete</a></button>
+    <button><a style="text-decoration: none; color: black;" href="{% url 'update' object.pk %}">Edit</a></button>
     
 </body>
 </html>

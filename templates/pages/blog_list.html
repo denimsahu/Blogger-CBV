@@ -8,21 +8,17 @@
     
 </head>
 <body>
-    <button><a href="add_blog">Add</a></button>
-    {% if object_list != None %}
+    <button><a href="{% url 'add_blog' %}">Add</a></button>
+    {% if object_list != None%}
         {% for obj in object_list %}
-            <form action="{{obj.pk}}" method="GET">
-                {% csrf_token %}
-                
+            <form action="{{obj.pk}}" method="GET">    
                 <h1>Title: {{obj.title}}</h1>
                 <h3>~{{obj.username}}</h3>
                 <p>Date time:{{obj.date_time}}</p>
                 <button>OPEN</button>
             </form>
         {% endfor %}
-        <p>{{hello}}</p>
-        {% else %}
-            <h1>Welcome Home</h1>
+       
     {% endif %}
     
     

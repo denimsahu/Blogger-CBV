@@ -9,12 +9,12 @@
     {% if message != None %}
         <h3>{{message}}</h3>
     {% endif %}
-    <form action="" method="POST">
+    <form method="POST">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <button>Submit</button>
     </form>
-    <a href="register">New User?</a>
+    <a href="{% url 'register' %}">New User?</a>
 </body>
 </html>
