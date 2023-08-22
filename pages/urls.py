@@ -10,4 +10,6 @@ urlpatterns = [
     path("<int:pk>/update",views.update.as_view(),name="update"),
     path("<int:pk>/delete",views.delete.as_view(),name="delete"),
     
+    path("experiment",views.experiment.as_view(),name="experiment"),
+    
 ]

@@ -8,7 +8,11 @@
     
 </head>
 <body>
-    <button><a href="{% url 'add_blog' %}">Add</a></button>
+    <form method="POST" style="margin: 10px; display: flex; flex-flow:row; justify-content: space-between;">
+        {% csrf_token %}
+        <button name="add" value="add">Add Blog</button>
+        <button name="logout" value="logout">Logout</a></button>
+    </form>
     {% if object_list != None%}
         {% for obj in object_list %}
             <form action="{{obj.pk}}" method="GET">    
