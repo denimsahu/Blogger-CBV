@@ -7,20 +7,22 @@ from django.contrib.auth import authenticate, logout, login
 from django.urls import reverse_lazy
 
 
-class login(View):
+class Login_View(View):
     def get(self,request):
-        return render (request,reverse_lazy('login'))
+        return render (request,"pages/login.html")
     def post(self,request):
         username=request.POST.get("username")
         password=request.POST.get("password")
         user=authenticate(username=username,password=password)
-        if user != None:
-            return redirect ("home")
+
+        if user is not None:
+            login(request,user)
+            return redirect('home')
         else:
-            return render (request,reverse_lazy('login'),{"message":"Incorrect Password OR User does'nt exist"})
+            return render (request,"pages/login.html",{"message":"Incorrect Password OR User does'nt exist"})
 
 
-class register(View):
+class Register_View(View):
     def get(self,request):
         return render (request,"pages/register.html")
     def post(self,request):
@@ -37,13 +39,31 @@ class register(View):
 
 class content(DetailView):
     model = Blog
-    
+    def post(self,request):
+        if request.user.is_authenticated:
+            return render(request,"pages/blog_detail.html")
+        else:
+            return render(request,"pages/login.html") 
 
 class home(ListView):
-    model = Blog
+    
+    def get(self,request):
+        if request.user.is_authenticated:
+           objects={"object_list":Blog.objects.all()}
+           return render(request,"pages/blog_list.html",objects)
+        else:
+            return redirect('login')
+
     def post(self,request):
-        value=request.POST.get('add')
-        print("JDIDJAISNEFCAJMDLOIFJAISJMIERAFEJ",value)
+        add_value=request.POST.get('add')
+        logout_value=request.POST.get('logout')
+        if (add_value!=None):
+            return redirect(reverse_lazy("add_blog"))
+        elif(logout_value!=None):
+            logout(request)
+            return redirect(reverse_lazy("login"))
+            
+        
 
 
 class delete(DeleteView):
